@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PNG to HTML + PDF Download</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f3f3f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .page {
+    width: 210mm;
+    height: 297mm;
+    background: white;
+    padding: 20mm;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .btn:hover { background: #0056b3; }
+  .seal {
+    position: absolute;
+    bottom: 20mm;
+    right: 20mm;
+    border: 1px dashed #999;
+    padding: 10px 30px;
+    color: #666;
+  }
+  .watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.05;
+    font-size: 60px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="watermark">CONFIDENTIAL</div>
+  <!-- Replace "image.png" with your actual image name -->
+  <img src="image.png" alt="PNG Preview">
+  <div class="footer">
+    <button class="btn" onclick="downloadPDF()">Download PDF</button>
+  </div>
+  <div class="seal">Signature / Seal</div>
+</div>
+
+<script>
+function downloadPDF() {
+  // PDF must be in the same folder as this HTML
+  const link = document.createElement('a');
+  link.href = 'document.pdf'; 
+  link.download = 'YourFile.pdf'; // What the downloaded file will be called
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+</script>
+
+</body>
+</html>
